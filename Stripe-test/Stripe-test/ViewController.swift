@@ -33,7 +33,6 @@ class ViewController: UIViewController {
     {
         let setupIntentParams = STPSetupIntentConfirmParams(clientSecret:    clientSecret)
         setupIntentParams.paymentMethodID = paymentMethodId
-        setupIntentParams.returnURL = "RETURN_URL" // to open your app after 3D authentication
         let paymentManager = STPPaymentHandler.shared()
         paymentManager.confirmSetupIntent(withParams: setupIntentParams, authenticationContext: self) { (status, setupIntent, error) in
             switch (status) {

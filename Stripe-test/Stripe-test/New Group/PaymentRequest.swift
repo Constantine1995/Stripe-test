@@ -9,7 +9,7 @@
 import Alamofire
 class PaymentRequest: ServerRequest<Intent> {
     
-     let secretKey = "sk_test_qMcDDokl6uG9DDLpGLsOFzb400aPX2vaTH"
+     let secretKey = "sk_test_zZOSQFHgWw6RVT7tG6oQscOM006UHQmlJn"
 
     func createSetupIntent(_ closure: @escaping (ServerRequest<Intent>) -> Void) {
         
@@ -20,8 +20,10 @@ class PaymentRequest: ServerRequest<Intent> {
         ]
         
         Alamofire.request(baseUrlIntentString, method: .post, parameters: parameters, headers: headersWithStripeToken(secretKey)).responseJSON { (response) in
+          
             switch response.result {
             case .success(let responseObject):
+                print(responseObject)
                 if let responseArray = responseObject as? [String : AnyObject] {
                     
                     self.responseObject = self.parseResponse(responseArray)
