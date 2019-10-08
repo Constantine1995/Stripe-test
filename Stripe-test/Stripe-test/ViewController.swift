@@ -29,15 +29,18 @@ class ViewController: UIViewController {
     
     
     // 5
-    func confirmSetupIntents(clientSecret:String, paymentMethodId:String)
+    func confirmSetupIntents(clientSecret: String, paymentMethodId: String)
     {
-        let setupIntentParams = STPSetupIntentConfirmParams(clientSecret:    clientSecret)
+        let paymentRequest = PaymentRequest()
+
+        let setupIntentParams = STPSetupIntentConfirmParams(clientSecret: clientSecret)
         setupIntentParams.paymentMethodID = paymentMethodId
         let paymentManager = STPPaymentHandler.shared()
         paymentManager.confirmSetupIntent(withParams: setupIntentParams, authenticationContext: self) { (status, setupIntent, error) in
             switch (status) {
             case .succeeded:
                 print("succeeded")
+                paymentRequest.customerSetupIntent(paymentMethodID: paymentMethodId)
                 // Setup succeeded
                 break
             case .canceled:
@@ -52,7 +55,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
     
     func confirmPaymentIntents(clientSecret:String, paymentMethodId:String)
     {
@@ -80,10 +82,10 @@ class ViewController: UIViewController {
     
     @IBAction func payButton(_ sender: UIButton) {
         let cardParams = STPPaymentMethodCardParams()
-        cardParams.number = "4242424242424242"
+        cardParams.number = "4000000000003220"
         cardParams.expMonth = 10
-        cardParams.expYear = 22
-        cardParams.cvc = "123"
+        cardParams.expYear = 23
+        cardParams.cvc = "122"
         let paymentMethodParams = STPPaymentMethodParams(
             card: cardParams,
             billingDetails: nil,

@@ -9,8 +9,8 @@
 import Alamofire
 class PaymentRequest: ServerRequest<Intent> {
     
-     let secretKey = "sk_test_zZOSQFHgWw6RVT7tG6oQscOM006UHQmlJn"
-
+    let secretKey = "sk_test_zZOSQFHgWw6RVT7tG6oQscOM006UHQmlJn"
+    
     func createSetupIntent(_ closure: @escaping (ServerRequest<Intent>) -> Void) {
         
         let payment_methodTypes = ["card"]
@@ -20,10 +20,10 @@ class PaymentRequest: ServerRequest<Intent> {
         ]
         
         Alamofire.request(baseUrlIntentString, method: .post, parameters: parameters, headers: headersWithStripeToken(secretKey)).responseJSON { (response) in
-          
+            
             switch response.result {
             case .success(let responseObject):
-                print(responseObject)
+                //                print(responseObject)
                 if let responseArray = responseObject as? [String : AnyObject] {
                     
                     self.responseObject = self.parseResponse(responseArray)
@@ -40,6 +40,27 @@ class PaymentRequest: ServerRequest<Intent> {
                 self.error = error as NSError?
             }
             closure(self)
+        }
+    }
+    
+    func customerSetupIntent(paymentMethodID: String) {
+        
+        let parameters = [
+            "payment_method": paymentMethodID
+        ]
+        
+        let url = "https://api.stripe.com/v1/customers"
+        
+        Alamofire.request(url, method: .post, parameters: parameters, headers: headersWithStripeToken(secretKey)).responseJSON { (response) in
+            
+            switch response.result {
+            case .success(_ ):
+                return
+//                print(responseObject)
+                // Save customer
+            case .failure(let error):
+                self.error = error as NSError?
+            }
         }
     }
     
