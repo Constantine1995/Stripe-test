@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (4.9.0)
   - Stripe (17.0.2)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - Alamofire
   - Stripe
+  - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Stripe
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   Stripe: 6c9ab10f087ca76c3cd7311462e383434921bdf8
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 8c53109b3f9663905e0feed117625fa548bc54bf
+PODFILE CHECKSUM: 6fa7b6012ff06d0ebf82e9a091d63cec36a3bed3
 
 COCOAPODS: 1.7.4

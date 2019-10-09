@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         STPAPIClient.shared().publishableKey = "pk_test_EP2c8iEr8B2AQANHAhY0rQwL005VKHgH5I"
         return true

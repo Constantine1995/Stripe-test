@@ -8,4 +8,5 @@ target 'Stripe-test' do
   # Pods for Stripe-test
 pod 'Stripe'
 pod 'Alamofire'
+pod 'SVProgressHUD'
 end

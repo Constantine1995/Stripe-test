@@ -8,8 +8,18 @@
 
 import UIKit
 import Stripe
+import SVProgressHUD
 
 class ViewController: UIViewController {
+    
+    func showActivityIndicator() {
+        SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0, vertical: 0))
+        SVProgressHUD.show()
+    }
+    
+    func hideActivityIndicator() {
+        SVProgressHUD.dismiss()
+    }
     
     func callAPIToGetClientSecret(paymentMethod:String, paymentMethodParams: STPPaymentMethodParams)
     {
@@ -21,10 +31,6 @@ class ViewController: UIViewController {
             print("client_secret = \(resultRequest.client_secret ?? "No client_secret")")
             self.confirmSetupIntents(clientSecret: resultRequest.client_secret!, paymentMethodId: paymentMethod)
         }
-        
-//        apiManager().callAPI(withURL: "YOUR_SERVER_URL", method: "GET", andParams: nil, showLoader: false) { (json:AnyObject, error:Bool) in
-//            let client_secret = (json as! NSDictionary).value(forKey: "client_secret") as! String
-        
     }
     
     
@@ -81,6 +87,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func payButton(_ sender: UIButton) {
+        showActivityIndicator()
+        
         let cardParams = STPPaymentMethodCardParams()
         cardParams.number = "4000000000003220"
         cardParams.expMonth = 10
